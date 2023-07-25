@@ -1,3 +1,4 @@
+import { store } from '../../store'
 import styles from './field.module.css'
 
 const FieldLayout = ({ field, handleChange, isGameEnded }) => (
@@ -17,7 +18,9 @@ const FieldLayout = ({ field, handleChange, isGameEnded }) => (
 	</div>
 )
 
-export const Field = ({ field, handleChange, isGameEnded }) => {
+export const Field = ({ field, handleChange }) => {
+	const { isGameEnded } = store.getState()
+
 	return (
 		<FieldLayout
 			field={field}

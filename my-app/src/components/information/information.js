@@ -1,3 +1,4 @@
+import { store } from '../../store'
 import styles from './information.module.css'
 
 const InformationLayout = ({ currentPlayer, isDraw, isGameEnded, winner }) => (
@@ -9,7 +10,9 @@ const InformationLayout = ({ currentPlayer, isDraw, isGameEnded, winner }) => (
 	</div>
 )
 
-export const Information = ({ currentPlayer, isDraw, isGameEnded, field }) => {
+export const Information = () => {
+	const { field, currentPlayer, isGameEnded, isDraw } = store.getState()
+
 	const winnerArrX = [
 		{ value: 'X' },
 		{ value: 'X' },
@@ -53,8 +56,9 @@ export const Information = ({ currentPlayer, isDraw, isGameEnded, field }) => {
 			compareArrByIndex(1, 4, 7, arr1, arr2) ||
 			compareArrByIndex(2, 5, 8, arr1, arr2)
 		) {
-			isDraw = false
-			isGameEnded = true
+			store.dispatch({
+				type: 'GAME_IS_OVER',
+			})
 			return 'X'
 		} else if (
 			compareArrBySlice(0, 3, arr1, arr3) ||
@@ -66,8 +70,9 @@ export const Information = ({ currentPlayer, isDraw, isGameEnded, field }) => {
 			compareArrByIndex(1, 4, 7, arr1, arr3) ||
 			compareArrByIndex(2, 5, 8, arr1, arr3)
 		) {
-			isDraw = false
-			isGameEnded = true
+			store.dispatch({
+				type: 'GAME_IS_OVER',
+			})
 			return 'O'
 		} else {
 			return
@@ -81,7 +86,6 @@ export const Information = ({ currentPlayer, isDraw, isGameEnded, field }) => {
 			currentPlayer={currentPlayer}
 			isDraw={isDraw}
 			isGameEnded={isGameEnded}
-			field={field}
 			winner={winner}
 		/>
 	)

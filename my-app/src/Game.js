@@ -1,61 +1,65 @@
+import { store } from './store'
 import { Information, Field, ResetButton } from './components/index'
+import { useState, useEffect } from 'react'
 import styles from './app.module.css'
-import { useState } from 'react'
 
 const GameLayout = ({
 	currentPlayer,
 	isDraw,
-	isGameEnded,
 	field,
 	handleChange,
 	setField,
 	setIsDraw,
-	setIsGameEnded,
 }) => (
 	<div className={styles.game}>
-		<Information
-			currentPlayer={currentPlayer}
-			isDraw={isDraw}
-			isGameEnded={isGameEnded}
-			field={field}
-		/>
-		<Field
-			field={field}
-			handleChange={handleChange}
-			isGameEnded={isGameEnded}
-		/>
-		<ResetButton
-			setField={setField}
-			setIsDraw={setIsDraw}
-			setIsGameEnded={setIsGameEnded}
-		/>
+		<Information currentPlayer={currentPlayer} isDraw={isDraw} field={field} />
+		<Field field={field} handleChange={handleChange} />
+		<ResetButton setField={setField} setIsDraw={setIsDraw} />
 	</div>
 )
 
 export const Game = () => {
-	const [currentPlayer, setCurrentPlayer] = useState('X')
-	const [isGameEnded, setIsGameEnded] = useState(false)
-	const [isDraw, setIsDraw] = useState(false)
-	const [field, setField] = useState([
-		{ value: '' },
-		{ value: '' },
-		{ value: '' },
-		{ value: '' },
-		{ value: '' },
-		{ value: '' },
-		{ value: '' },
-		{ value: '' },
-		{ value: '' },
-	])
+	const [field, setField] = useState(store.getState().field)
+	const { currentPlayer, isDraw } = store.getState()
+
+	useEffect(() => {
+		store.subscribe(() => {
+			setField(store.getState().field)
+		})
+	})
 
 	const handleChange = (index) => {
-		currentPlayer === 'X' ? setCurrentPlayer('O') : setCurrentPlayer('X')
+		currentPlayer === 'X'
+			? store.dispatch({
+					type: 'SET_TIC_TAC_TOE',
+					payload: {
+						currentPlayer: 'O',
+					},
+			  })
+			: store.dispatch({
+					type: 'SET_TIC_TAC_TOE',
+					payload: {
+						currentPlayer: 'X',
+					},
+			  })
 		const newField = [...field]
 		newField[index].value = currentPlayer
-		setField(newField)
+		// setField(newField)
+		store.dispatch({
+			type: 'SET_TIC_TAC_TOE',
+			payload: {
+				field: newField,
+			},
+		})
+
 		if (field.filter((el) => el.value === '').length === 0) {
-			setIsDraw(true)
-			setIsGameEnded(true)
+			store.dispatch({
+				type: 'GAME_IS_OVER',
+				payload: {
+					isGameEnded: true,
+					isDraw: true,
+				},
+			})
 		} else {
 			return
 		}
@@ -65,12 +69,9 @@ export const Game = () => {
 		<GameLayout
 			currentPlayer={currentPlayer}
 			isDraw={isDraw}
-			isGameEnded={isGameEnded}
 			field={field}
 			handleChange={handleChange}
 			setField={setField}
-			setIsDraw={setIsDraw}
-			setIsGameEnded={setIsGameEnded}
 		/>
 	)
 }
