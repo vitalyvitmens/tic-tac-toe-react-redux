@@ -1,5 +1,4 @@
 import styles from './information.module.css'
-import PropTypes from 'prop-types'
 
 const InformationLayout = ({ currentPlayer, isDraw, isGameEnded, winner }) => (
 	<div className={styles.field}>
@@ -9,13 +8,6 @@ const InformationLayout = ({ currentPlayer, isDraw, isGameEnded, winner }) => (
 		<div>{isGameEnded ? 'Конец игры!' : null}</div>
 	</div>
 )
-
-InformationLayout.propTypes = {
-	currentPlayer: PropTypes.string,
-	isDraw: PropTypes.bool,
-	isGameEnded: PropTypes.bool,
-	winner: PropTypes.string,
-}
 
 export const Information = ({ currentPlayer, isDraw, isGameEnded, field }) => {
 	const winnerArrX = [
@@ -93,12 +85,4 @@ export const Information = ({ currentPlayer, isDraw, isGameEnded, field }) => {
 			winner={winner}
 		/>
 	)
-}
-
-Information.propTypes = {
-	currentPlayer: PropTypes.string,
-	isDraw: PropTypes.bool,
-	isGameEnded: PropTypes.bool,
-	field: PropTypes.array,
-	winner: PropTypes.string,
 }

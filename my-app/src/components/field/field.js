@@ -1,5 +1,4 @@
 import styles from './field.module.css'
-import PropTypes from 'prop-types'
 
 const FieldLayout = ({ field, handleChange, isGameEnded }) => (
 	<div className={styles.box}>
@@ -18,12 +17,6 @@ const FieldLayout = ({ field, handleChange, isGameEnded }) => (
 	</div>
 )
 
-FieldLayout.propTypes = {
-	field: PropTypes.array,
-	handleChange: PropTypes.func,
-	isGameEnded: PropTypes.bool,
-}
-
 export const Field = ({ field, handleChange, isGameEnded }) => {
 	return (
 		<FieldLayout
@@ -32,10 +25,4 @@ export const Field = ({ field, handleChange, isGameEnded }) => {
 			isGameEnded={isGameEnded}
 		/>
 	)
-}
-
-Field.propTypes = {
-	field: PropTypes.array,
-	handleChange: PropTypes.func,
-	isGameEnded: PropTypes.bool,
 }
