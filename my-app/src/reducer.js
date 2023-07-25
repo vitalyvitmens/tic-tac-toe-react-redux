@@ -13,6 +13,28 @@ export const initialState = {
 		{ value: '' },
 		{ value: '' },
 	],
+	winnerArrX: [
+		{ value: 'X' },
+		{ value: 'X' },
+		{ value: 'X' },
+		{ value: 'X' },
+		{ value: 'X' },
+		{ value: 'X' },
+		{ value: 'X' },
+		{ value: 'X' },
+		{ value: 'X' },
+	],
+	winnerArrO: [
+		{ value: 'O' },
+		{ value: 'O' },
+		{ value: 'O' },
+		{ value: 'O' },
+		{ value: 'O' },
+		{ value: 'O' },
+		{ value: 'O' },
+		{ value: 'O' },
+		{ value: 'O' },
+	],
 }
 
 export const reducer = (state = initialState, action) => {
@@ -35,7 +57,7 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				isGameEnded: true,
-        isDraw: true,
+				isDraw: true,
 			}
 		}
 		case 'NEW_GAME': {

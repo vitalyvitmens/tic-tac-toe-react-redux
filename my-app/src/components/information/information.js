@@ -11,31 +11,7 @@ const InformationLayout = ({ currentPlayer, isDraw, isGameEnded, winner }) => (
 )
 
 export const Information = () => {
-	const { field, currentPlayer, isGameEnded, isDraw } = store.getState()
-
-	const winnerArrX = [
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-	]
-
-	const winnerArrO = [
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-	]
+	const { field, currentPlayer, isGameEnded, isDraw, winnerArrX, winnerArrO } = store.getState()
 
 	const whoIsWinnerFn = (arr1, arr2, arr3) => {
 		const compareArrBySlice = (start, end, arr1, arr2) =>
