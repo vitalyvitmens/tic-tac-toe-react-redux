@@ -11,7 +11,8 @@ const InformationLayout = ({ currentPlayer, isDraw, isGameEnded, winner }) => (
 )
 
 export const Information = () => {
-	const { field, currentPlayer, isGameEnded, isDraw, winnerArrX, winnerArrO } = store.getState()
+	const { field, currentPlayer, isGameEnded, isDraw, winnerArrX, winnerArrO } =
+		store.getState()
 
 	const whoIsWinnerFn = (arr1, arr2, arr3) => {
 		const compareArrBySlice = (start, end, arr1, arr2) =>
@@ -32,9 +33,7 @@ export const Information = () => {
 			compareArrByIndex(1, 4, 7, arr1, arr2) ||
 			compareArrByIndex(2, 5, 8, arr1, arr2)
 		) {
-			store.dispatch({
-				type: 'GAME_IS_OVER',
-			})
+			store.dispatch({ type: 'IS_GAME_ENDED' })
 			return 'X'
 		} else if (
 			compareArrBySlice(0, 3, arr1, arr3) ||
@@ -46,9 +45,7 @@ export const Information = () => {
 			compareArrByIndex(1, 4, 7, arr1, arr3) ||
 			compareArrByIndex(2, 5, 8, arr1, arr3)
 		) {
-			store.dispatch({
-				type: 'GAME_IS_OVER',
-			})
+			store.dispatch({ type: 'IS_GAME_ENDED' })
 			return 'O'
 		} else {
 			return

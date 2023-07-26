@@ -3,24 +3,22 @@ import { Information, Field, ResetButton } from './components/index'
 import { useState, useEffect } from 'react'
 import styles from './app.module.css'
 
-const GameLayout = ({
-	currentPlayer,
-	isDraw,
-	field,
-	handleChange,
-	setField,
-	setIsDraw,
-}) => (
+const { currentPlayer, isDraw, field } = store.getState()
+
+const GameLayout = ({ handleChange, setField }) => (
 	<div className={styles.game}>
 		<Information currentPlayer={currentPlayer} isDraw={isDraw} field={field} />
 		<Field field={field} handleChange={handleChange} />
-		<ResetButton setField={setField} setIsDraw={setIsDraw} />
+		<ResetButton setField={setField} />
 	</div>
 )
 
 export const Game = () => {
 	const [field, setField] = useState(store.getState().field)
-	const { currentPlayer, isDraw } = store.getState()
+	const { currentPlayer, isDraw, isGameEnded } = store.getState()
+	console.log('currentPlayer:', currentPlayer)
+	console.log('isGameEnded:', isGameEnded)
+	console.log('isDraw:', isDraw)
 
 	useEffect(() => {
 		store.subscribe(() => {
@@ -44,34 +42,19 @@ export const Game = () => {
 			  })
 		const newField = [...field]
 		newField[index].value = currentPlayer
-		// setField(newField)
 		store.dispatch({
 			type: 'SET_TIC_TAC_TOE',
 			payload: {
-				field: newField,
+				field: [...field],
 			},
 		})
 
 		if (field.filter((el) => el.value === '').length === 0) {
-			store.dispatch({
-				type: 'GAME_IS_OVER',
-				payload: {
-					isGameEnded: true,
-					isDraw: true,
-				},
-			})
+			store.dispatch({ type: 'IS_DRAW' })
 		} else {
 			return
 		}
 	}
 
-	return (
-		<GameLayout
-			currentPlayer={currentPlayer}
-			isDraw={isDraw}
-			field={field}
-			handleChange={handleChange}
-			setField={setField}
-		/>
-	)
+	return <GameLayout handleChange={handleChange} setField={setField} />
 }

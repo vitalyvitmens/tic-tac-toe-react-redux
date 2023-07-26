@@ -47,7 +47,7 @@ export const reducer = (state = initialState, action) => {
 				...payload,
 			}
 		}
-		case 'GAME_IS_OVER': {
+		case 'IS_GAME_ENDED': {
 			return {
 				...state,
 				isGameEnded: true,

@@ -8,6 +8,7 @@ const ResetButtonLayout = ({ ResetButtonFn }) => (
 )
 
 export const ResetButton = () => {
+
 	const ResetButtonFn = () => {
 		store.dispatch({ type: 'NEW_GAME' })
 	}
