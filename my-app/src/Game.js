@@ -3,16 +3,6 @@ import { Information, Field, ResetButton } from './components/index'
 import { useState, useEffect } from 'react'
 import styles from './app.module.css'
 
-const { currentPlayer, isDraw, field } = store.getState()
-
-const GameLayout = ({ handleChange, setField }) => (
-	<div className={styles.game}>
-		<Information currentPlayer={currentPlayer} isDraw={isDraw} field={field} />
-		<Field field={field} handleChange={handleChange} />
-		<ResetButton setField={setField} />
-	</div>
-)
-
 export const Game = () => {
 	const [field, setField] = useState(store.getState().field)
 	const { currentPlayer, isDraw, isGameEnded } = store.getState()
@@ -56,5 +46,11 @@ export const Game = () => {
 		}
 	}
 
-	return <GameLayout handleChange={handleChange} setField={setField} />
+	return (
+		<div className={styles.game}>
+			<Information />
+			<Field handleChange={handleChange} />
+			<ResetButton />
+		</div>
+	)
 }

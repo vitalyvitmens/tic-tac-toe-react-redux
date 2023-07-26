@@ -1,15 +1,6 @@
 import { store } from '../../store'
 import styles from './information.module.css'
 
-const InformationLayout = ({ currentPlayer, isDraw, isGameEnded, winner }) => (
-	<div className={styles.field}>
-		<div>{isDraw ? 'Ничья' : null}</div>
-		<div>{!isDraw && isGameEnded ? `Победа: ${winner}` : null}</div>
-		<div>{!isDraw && !isGameEnded ? `Ходит: ${currentPlayer}` : null}</div>
-		<div>{isGameEnded ? 'Конец игры!' : null}</div>
-	</div>
-)
-
 export const Information = () => {
 	const { field, currentPlayer, isGameEnded, isDraw, winnerArrX, winnerArrO } =
 		store.getState()
@@ -55,11 +46,11 @@ export const Information = () => {
 	let winner = whoIsWinnerFn(field, winnerArrX, winnerArrO)
 
 	return (
-		<InformationLayout
-			currentPlayer={currentPlayer}
-			isDraw={isDraw}
-			isGameEnded={isGameEnded}
-			winner={winner}
-		/>
+		<div className={styles.field}>
+			<div>{isDraw ? 'Ничья' : null}</div>
+			<div>{!isDraw && isGameEnded ? `Победа: ${winner}` : null}</div>
+			<div>{!isDraw && !isGameEnded ? `Ходит: ${currentPlayer}` : null}</div>
+			<div>{isGameEnded ? 'Конец игры!' : null}</div>
+		</div>
 	)
 }
