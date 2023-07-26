@@ -1,6 +1,6 @@
 export const initialState = {
 	currentPlayer: 'X',
-  winner: '',
+	winner: '',
 	isGameEnded: false,
 	isDraw: false,
 	field: [
@@ -62,7 +62,22 @@ export const reducer = (state = initialState, action) => {
 			}
 		}
 		case 'NEW_GAME': {
-			return initialState
+			return {
+				...state,
+				isGameEnded: false,
+				isDraw: false,
+				field: [
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+				],
+			}
 		}
 		default:
 			return state

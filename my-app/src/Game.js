@@ -46,9 +46,7 @@ export const Game = () => {
 		}
 	}
 
-	const handleNewGame = () => {
-		store.dispatch({ type: 'NEW_GAME' })
-	}
+	const handleNewGame = () => store.dispatch({ type: 'NEW_GAME' })
 
 	return (
 		<div className={styles.game}>
