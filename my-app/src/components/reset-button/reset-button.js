@@ -1,13 +1,8 @@
-import { store } from '../../store'
 import styles from './reset-button.module.css'
 
-export const ResetButton = () => {
-	const ResetButtonFn = () => {
-		store.dispatch({ type: 'NEW_GAME' })
-	}
-
+export const ResetButton = ({ handleNewGame }) => {
 	return (
-		<button className={styles.resetBtn} onClick={ResetButtonFn}>
+		<button className={styles.resetBtn} onClick={handleNewGame}>
 			Начать заново
 		</button>
 	)

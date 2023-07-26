@@ -1,5 +1,6 @@
 export const initialState = {
 	currentPlayer: 'X',
+  winner: '',
 	isGameEnded: false,
 	isDraw: false,
 	field: [
