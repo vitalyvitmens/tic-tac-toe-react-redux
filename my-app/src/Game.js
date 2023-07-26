@@ -5,10 +5,11 @@ import styles from './app.module.css'
 
 export const Game = () => {
 	const [field, setField] = useState(store.getState().field)
-	const { currentPlayer, isDraw, isGameEnded } = store.getState()
+	const { winner, currentPlayer, isDraw, isGameEnded } = store.getState()
 	console.log('currentPlayer:', currentPlayer)
 	console.log('isGameEnded:', isGameEnded)
 	console.log('isDraw:', isDraw)
+	console.log('winner:', winner)
 
 	useEffect(() => {
 		store.subscribe(() => {
