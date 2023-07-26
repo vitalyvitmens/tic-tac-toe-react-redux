@@ -42,16 +42,10 @@ export const reducer = (state = initialState, action) => {
 	const { type, payload } = action
 
 	switch (type) {
-		case 'SET_TIC_TAC_TOE': {
+		case 'SET_GAME': {
 			return {
 				...state,
 				...payload,
-			}
-		}
-		case 'IS_GAME_ENDED': {
-			return {
-				...state,
-				isGameEnded: true,
 			}
 		}
 		case 'WINNER_X': {
@@ -73,6 +67,7 @@ export const reducer = (state = initialState, action) => {
 				...state,
 				isGameEnded: true,
 				isDraw: true,
+				winner: '',
 			}
 		}
 		case 'NEW_GAME': {

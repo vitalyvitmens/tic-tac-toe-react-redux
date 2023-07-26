@@ -1,6 +1,6 @@
 import { store } from './store'
-import { Information, Field, ResetButton } from './components/index'
 import { useState, useEffect } from 'react'
+import { Information, Field, ResetButton } from './components/index'
 import styles from './app.module.css'
 
 export const Game = () => {

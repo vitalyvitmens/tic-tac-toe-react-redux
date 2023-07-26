@@ -7,13 +7,13 @@ export const Field = () => {
 	const handleChange = (index) => {
 		currentPlayer === 'X'
 			? store.dispatch({
-					type: 'SET_TIC_TAC_TOE',
+					type: 'SET_GAME',
 					payload: {
 						currentPlayer: 'O',
 					},
 			  })
 			: store.dispatch({
-					type: 'SET_TIC_TAC_TOE',
+					type: 'SET_GAME',
 					payload: {
 						currentPlayer: 'X',
 					},
@@ -21,7 +21,7 @@ export const Field = () => {
 		const newField = [...field]
 		newField[index].value = currentPlayer
 		store.dispatch({
-			type: 'SET_TIC_TAC_TOE',
+			type: 'SET_GAME',
 			payload: {
 				field: [...field],
 			},
