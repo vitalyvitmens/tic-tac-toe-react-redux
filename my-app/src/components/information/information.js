@@ -2,8 +2,15 @@ import { store } from '../../store'
 import styles from './information.module.css'
 
 export const Information = () => {
-	const { field, currentPlayer, isGameEnded, isDraw, winnerArrX, winnerArrO } =
-		store.getState()
+	const {
+		winner,
+		field,
+		currentPlayer,
+		isGameEnded,
+		isDraw,
+		winnerArrX,
+		winnerArrO,
+	} = store.getState()
 
 	const whoIsWinnerFn = (arr1, arr2, arr3) => {
 		const compareArrBySlice = (start, end, arr1, arr2) =>
@@ -23,10 +30,9 @@ export const Information = () => {
 			compareArrByIndex(0, 3, 6, arr1, arr2) ||
 			compareArrByIndex(1, 4, 7, arr1, arr2) ||
 			compareArrByIndex(2, 5, 8, arr1, arr2)
-		) {
-			store.dispatch({ type: 'IS_GAME_ENDED' })
-			return 'X'
-		} else if (
+		)
+    return store.dispatch({ type: 'WINNER_X' })
+		else if (
 			compareArrBySlice(0, 3, arr1, arr3) ||
 			compareArrBySlice(3, 6, arr1, arr3) ||
 			compareArrBySlice(6, 9, arr1, arr3) ||
@@ -35,15 +41,14 @@ export const Information = () => {
 			compareArrByIndex(0, 3, 6, arr1, arr3) ||
 			compareArrByIndex(1, 4, 7, arr1, arr3) ||
 			compareArrByIndex(2, 5, 8, arr1, arr3)
-		) {
-			store.dispatch({ type: 'IS_GAME_ENDED' })
-			return 'O'
-		} else {
+		)
+    return store.dispatch({ type: 'WINNER_O' })
+		else {
 			return
 		}
 	}
 
-	let winner = whoIsWinnerFn(field, winnerArrX, winnerArrO)
+	whoIsWinnerFn(field, winnerArrX, winnerArrO)
 
 	return (
 		<div className={styles.field}>

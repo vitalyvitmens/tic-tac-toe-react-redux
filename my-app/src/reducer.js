@@ -54,6 +54,20 @@ export const reducer = (state = initialState, action) => {
 				isGameEnded: true,
 			}
 		}
+		case 'WINNER_X': {
+			return {
+				...state,
+				isGameEnded: true,
+				winner: 'X',
+			}
+		}
+		case 'WINNER_O': {
+			return {
+				...state,
+				isGameEnded: true,
+				winner: 'O',
+			}
+		}
 		case 'IS_DRAW': {
 			return {
 				...state,
@@ -66,6 +80,7 @@ export const reducer = (state = initialState, action) => {
 				...state,
 				isGameEnded: false,
 				isDraw: false,
+				winner: '',
 				field: [
 					{ value: '' },
 					{ value: '' },
