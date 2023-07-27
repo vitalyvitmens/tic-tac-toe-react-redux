@@ -24,7 +24,7 @@ export const Information = () => {
 			compareArrByIndex(1, 4, 7, arr1, arr2) ||
 			compareArrByIndex(2, 5, 8, arr1, arr2)
 		)
-			store.dispatch({ type: 'WINNER_X' })
+			return store.dispatch({ type: 'WINNER_X' })
 		else if (
 			compareArrBySlice(0, 3, arr1, arr3) ||
 			compareArrBySlice(3, 6, arr1, arr3) ||
@@ -35,7 +35,7 @@ export const Information = () => {
 			compareArrByIndex(1, 4, 7, arr1, arr3) ||
 			compareArrByIndex(2, 5, 8, arr1, arr3)
 		)
-			store.dispatch({ type: 'WINNER_O' })
+			return store.dispatch({ type: 'WINNER_O' })
 		else {
 			return
 		}
