@@ -1,4 +1,6 @@
 import { store } from '../../store'
+import { WINNER_ARR_O, WINNER_ARR_X } from '../../constats'
+import { whoIsWinnerFn } from '../../utils'
 import styles from './field.module.css'
 
 export const Field = () => {
@@ -24,6 +26,8 @@ export const Field = () => {
 							field: [...field],
 						},
 				  })
+
+			whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
 
 			if (field.filter((el) => el.value === '').length === 0) {
 				store.dispatch({ type: 'IS_DRAW' })
