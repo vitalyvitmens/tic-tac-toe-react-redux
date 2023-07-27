@@ -2,7 +2,7 @@ import { store } from '../../store'
 import styles from './field.module.css'
 
 export const Field = () => {
-	const { winner, field, currentPlayer, isGameEnded } = store.getState()
+	const { field, currentPlayer, isGameEnded } = store.getState()
 
 	const handleChange = (index) => {
 		const newField = [...field]
@@ -23,10 +23,8 @@ export const Field = () => {
 						field: [...field],
 					},
 			  })
-		if (
-			field.filter((el) => el.value === '').length === 0 &&
-			(winner !== 'X' || winner !== 'O')
-		) {
+
+		if (field.filter((el) => el.value === '').length === 0) {
 			store.dispatch({ type: 'IS_DRAW' })
 		} else {
 			return
