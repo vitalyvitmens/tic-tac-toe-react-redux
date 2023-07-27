@@ -14,28 +14,6 @@ export const initialState = {
 		{ value: '' },
 		{ value: '' },
 	],
-	winnerArrX: [
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-		{ value: 'X' },
-	],
-	winnerArrO: [
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-		{ value: 'O' },
-	],
 }
 
 export const reducer = (state = initialState, action) => {

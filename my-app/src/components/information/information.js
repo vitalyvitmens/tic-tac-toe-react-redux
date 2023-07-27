@@ -1,16 +1,9 @@
 import { store } from '../../store'
+import { WINNER_ARR_O, WINNER_ARR_X } from '../../constats'
 import styles from './information.module.css'
 
 export const Information = () => {
-	const {
-		winner,
-		field,
-		currentPlayer,
-		isGameEnded,
-		isDraw,
-		winnerArrX,
-		winnerArrO,
-	} = store.getState()
+	const { winner, field, currentPlayer, isGameEnded, isDraw } = store.getState()
 
 	const whoIsWinnerFn = (arr1, arr2, arr3) => {
 		const compareArrBySlice = (start, end, arr1, arr2) =>
@@ -48,7 +41,7 @@ export const Information = () => {
 		}
 	}
 
-	whoIsWinnerFn(field, winnerArrX, winnerArrO)
+	whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
 
 	return (
 		<div className={styles.field}>
