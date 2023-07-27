@@ -30,7 +30,9 @@ export const Field = () => {
 			whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
 
 			if (field.filter((el) => el.value === '').length === 0) {
-				store.dispatch({ type: 'IS_DRAW' })
+				whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
+					? whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
+					: store.dispatch({ type: 'IS_DRAW' })
 			} else {
 				return
 			}
