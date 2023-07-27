@@ -1,3 +1,5 @@
+import { store } from '../store'
+
 export const whoIsWinnerFn = (arr1, arr2, arr3) => {
 	const compareArrBySlice = (start, end, arr1, arr2) =>
 		String(arr1.slice(start, end).map((el) => el.value)) ===
@@ -17,7 +19,7 @@ export const whoIsWinnerFn = (arr1, arr2, arr3) => {
 		compareArrByIndex(1, 4, 7, arr1, arr2) ||
 		compareArrByIndex(2, 5, 8, arr1, arr2)
 	)
-		return 'X'
+		return store.dispatch({ type: 'WINNER_X' })
 	else if (
 		compareArrBySlice(0, 3, arr1, arr3) ||
 		compareArrBySlice(3, 6, arr1, arr3) ||
@@ -28,7 +30,7 @@ export const whoIsWinnerFn = (arr1, arr2, arr3) => {
 		compareArrByIndex(1, 4, 7, arr1, arr3) ||
 		compareArrByIndex(2, 5, 8, arr1, arr3)
 	)
-		return 'O'
+		return store.dispatch({ type: 'WINNER_O' })
 	else {
 		return
 	}
