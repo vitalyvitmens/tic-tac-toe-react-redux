@@ -27,7 +27,9 @@ export const Field = () => {
 						},
 				  })
 
-			whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
+			if (field.filter((el) => el.value !== '').length < 9) {
+				whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
+			}
 
 			if (field.filter((el) => el.value === '').length === 0) {
 				whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
