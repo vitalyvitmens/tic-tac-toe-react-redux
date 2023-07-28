@@ -1,10 +1,20 @@
+import { useSelector } from 'react-redux'
+import {
+	selectCurrentPlayer,
+	selectField,
+	selectIsGameEnded,
+	selectWinner,
+} from '../../selectors'
 import { store } from '../../store'
 import { WINNER_ARR_O, WINNER_ARR_X } from '../../constats'
 import { whoIsWinnerFn } from '../../utils'
 import styles from './field.module.css'
 
 export const Field = () => {
-	const { winner, field, currentPlayer, isGameEnded } = store.getState()
+	const winner = useSelector(selectWinner)
+	const field = useSelector(selectField)
+	const currentPlayer = useSelector(selectCurrentPlayer)
+	const isGameEnded = useSelector(selectIsGameEnded)
 
 	const handleChange = (index) => {
 		const newField = [...field]
