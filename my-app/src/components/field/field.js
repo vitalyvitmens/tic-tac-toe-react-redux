@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { ACTION_TYPE, IS_DRAW } from '../../actions'
 import {
 	selectCurrentPlayer,
 	selectField,
@@ -21,21 +22,13 @@ export const Field = () => {
 		newField[index].value = currentPlayer
 
 		if (!winner) {
-			currentPlayer === 'X'
-				? store.dispatch({
-						type: 'SET_GAME',
-						payload: {
-							currentPlayer: 'O',
-							field: [...field],
-						},
-				  })
-				: store.dispatch({
-						type: 'SET_GAME',
-						payload: {
-							currentPlayer: 'X',
-							field: [...field],
-						},
-				  })
+			store.dispatch({
+				type: ACTION_TYPE.SET_GAME,
+				payload: {
+					currentPlayer: currentPlayer === 'X' ? 'O' : 'X',
+					field: [...field],
+				},
+			})
 
 			if (field.filter((el) => el.value !== '').length < 9) {
 				whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
@@ -44,7 +37,7 @@ export const Field = () => {
 			if (field.filter((el) => el.value === '').length === 0) {
 				whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
 					? whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
-					: store.dispatch({ type: 'IS_DRAW' })
+					: store.dispatch(IS_DRAW)
 			} else {
 				return
 			}
