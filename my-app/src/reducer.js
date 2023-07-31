@@ -1,3 +1,5 @@
+import { ACTION_TYPE } from './actions'
+
 export const initialState = {
 	currentPlayer: 'X',
 	winner: '',
@@ -16,39 +18,33 @@ export const initialState = {
 	],
 }
 
-export const reducer = (state = initialState, action) => {
-	const { type, payload } = action
-
+export const reducer = (state = initialState, { type, payload }) => {
 	switch (type) {
-		case 'SET_GAME': {
+		case ACTION_TYPE.SET_GAME:
 			return {
 				...state,
 				...payload,
 			}
-		}
-		case 'WINNER_X': {
+		case ACTION_TYPE.WINNER_X:
 			return {
 				...state,
 				isGameEnded: true,
 				winner: 'X',
 			}
-		}
-		case 'WINNER_O': {
+		case ACTION_TYPE.WINNER_O:
 			return {
 				...state,
 				isGameEnded: true,
 				winner: 'O',
 			}
-		}
-		case 'IS_DRAW': {
+		case ACTION_TYPE.IS_DRAW:
 			return {
 				...state,
 				isGameEnded: true,
 				isDraw: true,
 				winner: '',
 			}
-		}
-		case 'NEW_GAME': {
+		case ACTION_TYPE.NEW_GAME:
 			return {
 				...state,
 				isGameEnded: false,
@@ -66,7 +62,6 @@ export const reducer = (state = initialState, action) => {
 					{ value: '' },
 				],
 			}
-		}
 		default:
 			return state
 	}
