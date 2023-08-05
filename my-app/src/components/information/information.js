@@ -15,11 +15,14 @@ export const Information = () => {
 	const isDraw = useSelector(selectIsDraw)
 
 	return (
-		<div className={styles.field}>
-			<div>{isDraw ? 'Ничья' : null}</div>
-			<div>{!isDraw && isGameEnded ? `Победа: ${winner}` : null}</div>
-			<div>{!isDraw && !isGameEnded ? `Ходит: ${currentPlayer}` : null}</div>
-			<div>{isGameEnded ? 'Конец игры!' : null}</div>
-		</div>
+		<>
+			<div className={styles.field}>
+				{isDraw
+					? 'Ничья\nКонец игры!'
+					: isGameEnded
+					? `Победа: ${winner}\nКонец игры!`
+					: `Ходит: ${currentPlayer}`}
+			</div>
+		</>
 	)
 }
