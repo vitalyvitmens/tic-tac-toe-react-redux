@@ -6,7 +6,10 @@ export const ACTION_TYPE = {
 	NEW_GAME: 'NEW_GAME',
 }
 
-export const SET_GAME = { type: ACTION_TYPE.SET_GAME }
+export const SET_GAME = (payload) => ({
+	type: ACTION_TYPE.SET_GAME,
+	payload,
+})
 
 export const WINNER_X = { type: ACTION_TYPE.WINNER_X }
 
