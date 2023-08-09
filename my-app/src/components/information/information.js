@@ -6,8 +6,6 @@ import {
 	selectIsDraw,
 } from '../../selectors'
 
-import styles from './information.module.css'
-
 export const Information = () => {
 	const winner = useSelector(selectWinner)
 	const currentPlayer = useSelector(selectCurrentPlayer)
@@ -16,7 +14,7 @@ export const Information = () => {
 
 	return (
 		<>
-			<div className={styles.field}>
+			<div className="text-4xl font-semibold my-30">
 				{isDraw
 					? 'Ничья\nКонец игры!'
 					: isGameEnded

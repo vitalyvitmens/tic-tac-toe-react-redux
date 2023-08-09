@@ -8,7 +8,6 @@ import {
 } from '../../selectors'
 import { WINNER_ARR_O, WINNER_ARR_X } from '../../constats'
 import { whoIsWinnerFn } from '../../utils'
-import styles from './field.module.css'
 
 export const Field = () => {
 	const winner = useSelector(selectWinner)
@@ -16,7 +15,7 @@ export const Field = () => {
 	const currentPlayer = useSelector(selectCurrentPlayer)
 	const isGameEnded = useSelector(selectIsGameEnded)
 
-  const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
 	const handleChange = (index) => {
 		const newField = [...field]
@@ -46,11 +45,11 @@ export const Field = () => {
 	}
 
 	return (
-		<div className={styles.box}>
+		<div className="box">
 			{field.map((cell, index) => {
 				return (
 					<button
-						className={cell.value === 'X' ? styles.x : styles.o}
+						className={cell.value === 'X' ? 'x' : 'o'}
 						key={index}
 						onClick={() => (!cell.value ? handleChange(index) : null)}
 						disabled={isGameEnded}

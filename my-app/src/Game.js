@@ -1,9 +1,8 @@
 import { Information, Field, ResetButton } from './components/index'
-import styles from './app.module.css'
 
 export const Game = () => {
 	return (
-		<div className={styles.game}>
+		<div className="text-center">
 			<Information />
 			<Field />
 			<ResetButton />
