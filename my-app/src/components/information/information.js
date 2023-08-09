@@ -1,17 +1,12 @@
-import { useSelector } from 'react-redux'
-import {
-	selectCurrentPlayer,
-	selectIsGameEnded,
-	selectWinner,
-	selectIsDraw,
-} from '../../selectors'
+import { connect } from 'react-redux'
+import { mapStateToProps } from '../../utils'
 
-export const Information = () => {
-	const winner = useSelector(selectWinner)
-	const currentPlayer = useSelector(selectCurrentPlayer)
-	const isGameEnded = useSelector(selectIsGameEnded)
-	const isDraw = useSelector(selectIsDraw)
-
+const InformationContainer = ({
+	winner,
+	currentPlayer,
+	isGameEnded,
+	isDraw,
+}) => {
 	return (
 		<>
 			<div className="text-4xl font-semibold my-30">
@@ -24,3 +19,5 @@ export const Information = () => {
 		</>
 	)
 }
+
+export const Information = connect(mapStateToProps)(InformationContainer)

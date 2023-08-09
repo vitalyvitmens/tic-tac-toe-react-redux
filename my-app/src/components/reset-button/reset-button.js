@@ -1,8 +1,7 @@
-import { useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { NEW_GAME } from '../../actions'
 
-export const ResetButton = () => {
-	const dispatch = useDispatch()
+const ResetButtonContainer = ({ dispatch }) => {
 
 	const handleNewGame = () => dispatch(NEW_GAME)
 
@@ -12,3 +11,5 @@ export const ResetButton = () => {
 		</button>
 	)
 }
+
+export const ResetButton = connect()(ResetButtonContainer)
