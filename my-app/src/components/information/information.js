@@ -2,10 +2,10 @@ import { connect } from 'react-redux'
 import { mapStateToProps } from '../../utils'
 
 const InformationContainer = ({
+	isDraw,
+	isGameEnded,
 	winner,
 	currentPlayer,
-	isGameEnded,
-	isDraw,
 }) => {
 	return (
 		<>
