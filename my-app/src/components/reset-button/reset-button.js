@@ -1,15 +1,17 @@
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import { NEW_GAME } from '../../actions'
 
-const ResetButtonContainer = ({ dispatch }) => {
+export class ResetButtonContainer extends Component {
+	handleNewGame = () => this.props.dispatch(NEW_GAME)
 
-	const handleNewGame = () => dispatch(NEW_GAME)
-
-	return (
-		<button className="resetBtn" onClick={handleNewGame}>
-			Начать заново
-		</button>
-	)
+	render() {
+		return (
+			<button className="resetBtn" onClick={this.handleNewGame}>
+				Начать заново
+			</button>
+		)
+	}
 }
 
 export const ResetButton = connect()(ResetButtonContainer)
