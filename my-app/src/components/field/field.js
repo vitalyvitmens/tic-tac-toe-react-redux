@@ -1,58 +1,54 @@
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import { ACTION_TYPE, IS_DRAW } from '../../actions'
 import { WINNER_ARR_O, WINNER_ARR_X } from '../../constats'
 import { whoIsWinnerFn, mapStateToProps } from '../../utils'
+export class FieldContainer extends Component {
+	handleChange = (index) => {
+		const newField = [...this.props.field]
+		newField[index].value = this.props.currentPlayer
 
-const FieldContainer = ({
-	dispatch,
-	winner,
-	field,
-	currentPlayer,
-	isGameEnded,
-}) => {
-	const handleChange = (index) => {
-		const newField = [...field]
-		newField[index].value = currentPlayer
-
-		if (!winner) {
-			dispatch({
+		if (!this.props.winner) {
+			this.props.dispatch({
 				type: ACTION_TYPE.SET_GAME,
 				payload: {
-					currentPlayer: currentPlayer === 'X' ? 'O' : 'X',
-					field: [...field],
+					currentPlayer: this.props.currentPlayer === 'X' ? 'O' : 'X',
+					field: [...this.props.field],
 				},
 			})
 
-			if (field.filter((el) => el.value !== '').length < 9) {
-				whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
+			if (this.props.field.filter((el) => el.value !== '').length < 9) {
+				whoIsWinnerFn(this.props.field, WINNER_ARR_X, WINNER_ARR_O)
 			}
 
-			if (field.filter((el) => el.value === '').length === 0) {
-				whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
-					? whoIsWinnerFn(field, WINNER_ARR_X, WINNER_ARR_O)
-					: dispatch(IS_DRAW)
+			if (this.props.field.filter((el) => el.value === '').length === 0) {
+				whoIsWinnerFn(this.props.field, WINNER_ARR_X, WINNER_ARR_O)
+					? whoIsWinnerFn(this.props.field, WINNER_ARR_X, WINNER_ARR_O)
+					: this.props.dispatch(IS_DRAW)
 			} else {
 				return
 			}
 		}
 	}
 
-	return (
-		<div className="box">
-			{field.map((cell, index) => {
-				return (
-					<button
-						className={cell.value === 'X' ? 'x' : 'o'}
-						key={index}
-						onClick={() => (!cell.value ? handleChange(index) : null)}
-						disabled={isGameEnded}
-					>
-						{cell.value}
-					</button>
-				)
-			})}
-		</div>
-	)
+	render() {
+		return (
+			<div className="box">
+				{this.props.field.map((cell, index) => {
+					return (
+						<button
+							className={cell.value === 'X' ? 'x' : 'o'}
+							key={index}
+							onClick={() => (!cell.value ? this.handleChange(index) : null)}
+							disabled={this.props.isGameEnded}
+						>
+							{cell.value}
+						</button>
+					)
+				})}
+			</div>
+		)
+	}
 }
 
 export const Field = connect(mapStateToProps)(FieldContainer)
